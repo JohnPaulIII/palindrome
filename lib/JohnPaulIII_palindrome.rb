@@ -2,17 +2,25 @@
 
 require_relative "JohnPaulIII_palindrome/version"
 
-class String
+module JohnPaulIIIPalindrome
 
   # Returns true for a palindrome, false otherwise.
   def palindrome?
-    processed_content == processed_content.reverse
+    processed_content == processed_content.reverse && processed_content != ""
   end
 
   private
 
     # Returns content for palindrome testing.
     def processed_content
-      self.scan(/[a-z]/i).join.downcase
+      to_s.scan(/[a-z0-9]/i).join.downcase
     end
+end
+
+class String
+  include JohnPaulIIIPalindrome
+end
+
+class Integer
+  include JohnPaulIIIPalindrome
 end
